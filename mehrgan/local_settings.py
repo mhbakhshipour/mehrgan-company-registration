@@ -3,7 +3,6 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 SECRET_KEY = 'zv2^004ts_4i_!ocbwfh50@j5)8^pafkc#j(0@35ckdjem&rg&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -28,6 +27,8 @@ DATABASES = {
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/assets/'
+STATIC_ROOT = os.path.join(BASE_DIR, "assets")
+# STATIC_ROOT = '../assets'
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
@@ -35,15 +36,8 @@ MEDIA_URL = '/medias/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'medias')
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'assets')]
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'assets')]
 
-# UPLOAD_DIRECTORIES = {
-#     'avatar': 'avatars',
-#     'logo': 'logos',
-#     'cat_image': 'category_images',
-#     'project': 'projects',
-#     'slider_image': 'slider_images',
-#     'service_image': 'service_images',
-#     'news_image': 'news_image',
-#     'cat_image': 'cat_image'
-# }
+UPLOAD_DIRECTORIES = {
+    'blog_image': 'blog_image',
+}
