@@ -28,16 +28,14 @@ DATABASES = {
 
 STATIC_URL = '/assets/'
 STATIC_ROOT = os.path.join(BASE_DIR, "assets")
-# STATIC_ROOT = '../assets'
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 MEDIA_URL = '/medias/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'medias')
 
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'assets')]
 
 UPLOAD_DIRECTORIES = {
-    'blog_image': 'blog_image',
+    'blog_thumbnail': 'blog_thumbnail',
+    'category_thumbnail': 'category_thumbnail',
 }
