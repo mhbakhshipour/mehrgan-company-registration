@@ -66,14 +66,24 @@ class CategorizedItems(models.Model):
     def __str__(self):
         return self.category.title
 
+    @property
+    def category_title(self):
+        return self.category.title
+
+    @property
+    def category_slug(self):
+        if self.category.parent is None:
+            return self.category.slug
+        return self.category.parent.slug
+
+    @property
+    def category_parent(self):
+        return self.category.parent.title
+
     class Meta:
         db_table = 'categorized_items'
         verbose_name = _('categorized_items')
         verbose_name_plural = _('categorized_items')
-
-
-class CommentManager(Manager):
-    pass
 
 
 class Comment(models.Model):
@@ -81,8 +91,6 @@ class Comment(models.Model):
     email = models.EmailField(_('email'), null=False, blank=False, max_length=255)
     name = models.CharField(_('name'), null=False, blank=False, max_length=255)
     created_at = models.DateTimeField(_('created at'), auto_now_add=True)
-
-    objects = CommentManager()
 
     def __str__(self):
         return self.comment
@@ -99,17 +107,29 @@ class CommentsItems(models.Model):
     object_id = models.PositiveIntegerField(verbose_name=_('object_id'))
     content_object = GenericForeignKey('content_type', 'object_id')
 
+    @property
+    def comment_name(self):
+        return self.comment.name
+
+    @property
+    def comment_title(self):
+        return self.comment.comment
+
+    @property
+    def comment_email(self):
+        return self.comment.email
+
+    @property
+    def comment_created_at(self):
+        return self.comment.created_at.strftime('%Y/%m/%d - %H:%M:%S')
+
     def __str__(self):
-        return self.comment
+        return self.comment.comment
 
     class Meta:
         db_table = 'comments_items'
         verbose_name = _('comments_items')
         verbose_name_plural = _('comments_items')
-
-
-class NewsManager(Manager):
-    pass
 
 
 class News(models.Model):
@@ -122,7 +142,9 @@ class News(models.Model):
     thumbnail = models.ImageField(_('thumbnail'), upload_to=settings.UPLOAD_DIRECTORIES['blog_thumbnail'])
     slug = models.CharField(max_length=255, verbose_name=_('slug'), unique=True)
 
-    objects = NewsManager()
+    @property
+    def custom_created_at(self):
+        return self.created_at.strftime('%Y/%m/%d - %H:%M:%S')
 
     class Meta:
         db_table = 'news'

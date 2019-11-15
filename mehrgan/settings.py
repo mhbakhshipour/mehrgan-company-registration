@@ -94,10 +94,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # jalali date
 JALALI_DATE_DEFAULTS = {
-   'Strftime': {
+    'Strftime': {
         'date': '%y/%m/%d',
         'datetime': '%H:%M:%S _ %y/%m/%d',
     },
@@ -122,7 +121,6 @@ JALALI_DATE_DEFAULTS = {
         }
     },
 }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
