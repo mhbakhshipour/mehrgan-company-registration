@@ -78,7 +78,9 @@ class CategorizedItems(models.Model):
 
     @property
     def category_parent(self):
-        return self.category.parent.title
+        if self.category.parent is None:
+            return self.category.parent
+        return self.category.parent.id
 
     class Meta:
         db_table = 'categorized_items'
@@ -91,6 +93,8 @@ class Comment(models.Model):
     email = models.EmailField(_('email'), null=False, blank=False, max_length=255)
     name = models.CharField(_('name'), null=False, blank=False, max_length=255)
     created_at = models.DateTimeField(_('created at'), auto_now_add=True)
+    parent = models.ForeignKey(to='self', blank=True, null=True, on_delete=models.CASCADE, related_name='children',
+                               verbose_name=_('parent'))
 
     def __str__(self):
         return self.comment
@@ -122,6 +126,12 @@ class CommentsItems(models.Model):
     @property
     def comment_created_at(self):
         return self.comment.created_at.strftime('%Y/%m/%d - %H:%M:%S')
+
+    @property
+    def comment_parent(self):
+        if self.comment.parent is None:
+            return self.comment.parent
+        return self.comment.parent.id
 
     def __str__(self):
         return self.comment.comment

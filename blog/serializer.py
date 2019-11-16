@@ -7,13 +7,13 @@ from mehrgan.custom_view_mixins import ExpressiveListModelMixin
 class CategoriesSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.CategorizedItems
-        fields = ['category_title', 'category_parent', 'category_slug']
+        fields = ['category_id', 'category_title', 'category_slug', 'category_parent']
 
 
 class CommentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.CommentsItems
-        fields = ['id', 'comment_title', 'comment_name', 'comment_email', 'comment_created_at']
+        fields = ['comment_id', 'comment_title', 'comment_name', 'comment_email', 'comment_created_at', 'comment_parent']
 
 
 class GetNewsListSerializer(serializers.ModelSerializer):

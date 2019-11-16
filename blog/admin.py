@@ -35,16 +35,17 @@ class CommentGenericInlineModelAdmin(GenericStackedInline):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ['name', 'email', 'comment']
+        fields = ['name', 'email', 'comment', 'parent']
         labels = {
             'name': 'نام',
             'email': 'ایمیل',
-            'comment': 'نظر'
+            'comment': 'نظر',
+            'parent': 'کامنت اصلی'
         }
 
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ['name', 'email', 'comment', 'created_at']
+    list_display = ['name', 'email', 'comment', 'created_at', 'parent']
     form = CommentForm
 
 
