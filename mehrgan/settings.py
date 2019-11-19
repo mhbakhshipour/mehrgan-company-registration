@@ -53,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'mehrgan.custom_middleware.input_sanitizer_middleware',
+    'mehrgan.custom_middleware.global_identifier_extractor_middleware',
 ]
 
 ROOT_URLCONF = 'mehrgan.urls'

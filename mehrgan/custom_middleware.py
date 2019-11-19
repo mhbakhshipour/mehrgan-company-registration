@@ -29,3 +29,29 @@ def input_sanitizer_middleware(get_response):
         return response
 
     return middleware
+
+
+request_ip = None
+
+
+def set_request_ip_globally(ip):
+    global request_ip
+    request_ip = ip
+
+
+def get_current_request_ip():
+    global request_ip
+    return request_ip
+
+
+def global_identifier_extractor_middleware(get_response):
+    def extract_ip(request):
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR', None)
+        return x_forwarded_for.split(',')[0] if x_forwarded_for else request.META.get('REMOTE_ADDR')
+
+    def middleware(request):
+        set_request_ip_globally(extract_ip(request))
+        response = get_response(request)
+        return response
+
+    return middleware
