@@ -2,7 +2,7 @@ from django import forms
 from django.contrib import admin
 from django.contrib.contenttypes.admin import GenericStackedInline
 
-from blog.models import News, Category, CategorizedItems, CommentsItems, Comment
+from blog.models import News, Category, CategorizedItems, CommentedItems, Comment
 
 
 class CategoriesForm(forms.ModelForm):
@@ -28,7 +28,7 @@ class CategoryGenericInlineModelAdmin(GenericStackedInline):
 
 
 class CommentGenericInlineModelAdmin(GenericStackedInline):
-    model = CommentsItems
+    model = CommentedItems
     extra = 1
 
 

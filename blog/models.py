@@ -89,12 +89,18 @@ class CategorizedItems(models.Model):
 
 
 class Comment(models.Model):
+    comment_status_choices = (
+        ('pending', _('pending')),
+        ('accepted', _('accepted'))
+    )
+
     comment = models.TextField(_('comment'), null=False, blank=False, max_length=500)
     email = models.EmailField(_('email'), null=False, blank=False, max_length=255)
     name = models.CharField(_('name'), null=False, blank=False, max_length=255)
     created_at = models.DateTimeField(_('created at'), auto_now_add=True)
     parent = models.ForeignKey(to='self', blank=True, null=True, on_delete=models.CASCADE, related_name='children',
                                verbose_name=_('parent'))
+    status = models.CharField(_('status'), max_length=255, choices=comment_status_choices, default='pending')
 
     def __str__(self):
         return self.comment
@@ -105,7 +111,7 @@ class Comment(models.Model):
         verbose_name_plural = _('comments')
 
 
-class CommentsItems(models.Model):
+class CommentedItems(models.Model):
     comment = models.ForeignKey(to='Comment', on_delete=models.CASCADE, verbose_name=_('comment'))
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, verbose_name=_('content_type'))
     object_id = models.PositiveIntegerField(verbose_name=_('object_id'))
@@ -124,6 +130,10 @@ class CommentsItems(models.Model):
         return self.comment.email
 
     @property
+    def comment_status(self):
+        return self.comment.status
+
+    @property
     def comment_created_at(self):
         return self.comment.created_at.strftime('%Y/%m/%d - %H:%M:%S')
 
@@ -137,9 +147,9 @@ class CommentsItems(models.Model):
         return self.comment.comment
 
     class Meta:
-        db_table = 'comments_items'
-        verbose_name = _('comments_items')
-        verbose_name_plural = _('comments_items')
+        db_table = 'commented_items'
+        verbose_name = _('commented_items')
+        verbose_name_plural = _('commented_items')
 
 
 class News(models.Model):
@@ -147,7 +157,7 @@ class News(models.Model):
     description = models.TextField(_('description'), null=False, blank=False)
     content = FroalaField()
     categories = GenericRelation(CategorizedItems, null=True, blank=True)
-    comments = GenericRelation(CommentsItems, null=True, blank=True)
+    comments = GenericRelation(CommentedItems, null=True, blank=True)
     created_at = models.DateTimeField(_('created at'), auto_now_add=True)
     thumbnail = models.ImageField(_('thumbnail'), upload_to=settings.UPLOAD_DIRECTORIES['blog_thumbnail'])
     slug = models.CharField(max_length=255, verbose_name=_('slug'), unique=True)
