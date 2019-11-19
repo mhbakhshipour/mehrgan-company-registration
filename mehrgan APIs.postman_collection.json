@@ -1,0 +1,127 @@
+{
+	"info": {
+		"_postman_id": "c0265196-251c-4771-808d-239f9917d3f9",
+		"name": "mehrgan APIs",
+		"description": "rest API urls for mehrgan",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "news",
+			"item": [
+				{
+					"name": "get news list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/get-news-list/<int:count>",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"get-news-list",
+								"<int:count>"
+							]
+						},
+						"description": "replace \"<int:count>\" with number of you want to get news"
+					},
+					"response": []
+				},
+				{
+					"name": "get news detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/get-news-detail/<str:slug>",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"get-news-detail",
+								"<str:slug>"
+							]
+						},
+						"description": "replace \"<str:slug>\" with slug news of you want to get"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "create comment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "comment",
+							"value": "babato",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "jkbdfksjb@jhsbdsa.com",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "amat",
+							"type": "text"
+						},
+						{
+							"key": "parent",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:8000/api/v1/create-comment/<str:content_type>/<int:id>",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"create-comment",
+						"<str:content_type>",
+						"<int:id>"
+					]
+				},
+				"description": "replace \"<str:content_type>\" with content type of you want to comment on it (EX: news)\nreplace \"<int:id>\" with id of content type you want to comment on it (EX: 5)\nEX: 127.0.0.1:8000/api/v1/create-comment/news/5\n\nin body of request:\nyou should pas some parametrs...\nEX:\ncomment:comment exmple\nemail:ex@ex.com\nname:name exmple\nparent:2"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
