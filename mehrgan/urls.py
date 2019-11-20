@@ -16,7 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from blog.urls import urlpatterns as blog_urls
+from core.urls import urlpatterns as core_urls
 
 default_urls = [path('api/browse/', include('rest_framework.urls')), path('admin/', admin.site.urls)]
-imported_urls = [*blog_urls, ]
+imported_urls = [*blog_urls, *core_urls, ]
 urlpatterns = [*default_urls] + imported_urls

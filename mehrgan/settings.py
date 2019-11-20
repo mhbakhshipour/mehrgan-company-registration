@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'jalali_date',
     'froala_editor',
     'blog',
+    'core',
 ]
 
 REST_FRAMEWORK = {
