@@ -7,3 +7,9 @@ class CreateContactUsSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.ContactUs
         fields = ['id', 'full_name', 'email', 'phone', 'description', 'c_created_at', 'status']
+
+
+class GetFaqSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Faq
+        fields = ['title', 'description', 'c_created_at']

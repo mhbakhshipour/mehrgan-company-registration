@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext as _
+from froala_editor.fields import FroalaField
 
 
 class ContactUs(models.Model):
@@ -26,3 +27,21 @@ class ContactUs(models.Model):
         db_table = 'contact_us'
         verbose_name = _('contact_us')
         verbose_name_plural = _('contact_us')
+
+
+class Faq(models.Model):
+    title = models.CharField(_('title'), null=False, blank=False, max_length=255)
+    description = FroalaField()
+    created_at = models.DateTimeField(_('created at'), auto_now_add=True)
+
+    @property
+    def c_created_at(self):
+        return self.created_at.strftime('%Y/%m/%d - %H:%M:%S')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        db_table = 'faq'
+        verbose_name = _('faq')
+        verbose_name_plural = _('faq')
