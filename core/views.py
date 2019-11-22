@@ -13,7 +13,7 @@ class CreateContactUsViewSet(ExpressiveCreateContactUsViewSetModelMixin, generic
 
 class GetFaqViewSet(ExpressiveListModelMixin, generics.ListAPIView):
     serializer_class = GetFaqSerializer
-    plural_name = 'faq'
+    plural_name = 'faqs'
 
     def get_queryset(self):
         queryset = Faq.objects.all().order_by('-created_at')

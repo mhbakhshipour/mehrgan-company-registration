@@ -12,4 +12,4 @@ class CreateContactUsSerializer(serializers.ModelSerializer):
 class GetFaqSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Faq
-        fields = ['title', 'description', 'c_created_at']
+        fields = ['id', 'title', 'description', 'c_created_at']
