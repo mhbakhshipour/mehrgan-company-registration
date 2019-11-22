@@ -1,12 +1,13 @@
 from django.db import transaction
 from rest_framework import serializers
 
-from blog import models
+from blog.models import News
+from core.models import CategorizedItems, CommentedItems, Comment
 
 
 class CategoriesSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.CategorizedItems
+        model = CategorizedItems
         fields = ['category_id', 'category_title', 'category_slug', 'category_parent']
 
 
@@ -14,14 +15,14 @@ class CommentsSerializer(serializers.ModelSerializer):
     read_only_fields = ('comment_id',)
 
     class Meta:
-        model = models.CommentedItems
+        model = CommentedItems
         fields = ['comment_id', 'comment_title', 'comment_name', 'comment_email', 'comment_created_at',
                   'comment_parent', 'comment_status']
 
 
 class GetNewsListSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.News
+        model = News
         fields = ['id', 'title', 'description', 'thumbnail', 'slug']
 
 
@@ -30,18 +31,18 @@ class GetNewsDetailSerializer(serializers.ModelSerializer):
     comments = CommentsSerializer(many=True)
 
     class Meta:
-        model = models.News
+        model = News
         fields = ['id', 'title', 'description', 'content', 'custom_created_at', 'thumbnail', 'slug', 'categories',
                   'comments']
 
 
 class CreateCommentedItemsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.Comment
+        model = Comment
         fields = ['comment', 'content_type', 'object_id']
 
 
 class CreateCommentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.Comment
+        model = Comment
         fields = ['id', 'comment', 'email', 'name', 'parent']

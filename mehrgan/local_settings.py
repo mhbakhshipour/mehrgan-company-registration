@@ -36,4 +36,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'medias')
 UPLOAD_DIRECTORIES = {
     'blog_thumbnail': 'blog_thumbnail',
     'category_thumbnail': 'category_thumbnail',
+    'consultant_avatar': 'consultant_avatar',
 }

@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'froala_editor',
     'blog',
     'core',
+    'consultant',
 ]
 
 REST_FRAMEWORK = {

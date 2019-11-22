@@ -2,24 +2,8 @@ from django import forms
 from django.contrib import admin
 from django.contrib.contenttypes.admin import GenericStackedInline
 
-from blog.models import News, Category, CategorizedItems, CommentedItems, Comment
-
-
-class CategoriesForm(forms.ModelForm):
-    class Meta:
-        model = Category
-        fields = ['title', 'description', 'parent', 'slug']
-        labels = {
-            'title': 'عنوان',
-            'description': 'توضیح',
-            'parent': 'سر دسته',
-            'slug': 'شناسه آدرسی'
-        }
-
-
-class CategoriesAdmin(admin.ModelAdmin):
-    list_display = ['title', 'description', 'parent', 'slug', 'created_at']
-    form = CategoriesForm
+from blog.models import News
+from core.models import CategorizedItems, CommentedItems
 
 
 class CategoryGenericInlineModelAdmin(GenericStackedInline):
@@ -30,25 +14,6 @@ class CategoryGenericInlineModelAdmin(GenericStackedInline):
 class CommentGenericInlineModelAdmin(GenericStackedInline):
     model = CommentedItems
     extra = 1
-
-
-class CommentForm(forms.ModelForm):
-    class Meta:
-        model = Comment
-        fields = ['name', 'email', 'comment', 'parent', 'status']
-        labels = {
-            'name': 'نام',
-            'email': 'ایمیل',
-            'comment': 'نظر',
-            'parent': 'کامنت اصلی',
-            'status': 'وضعیت',
-        }
-
-
-class CommentAdmin(admin.ModelAdmin):
-    list_display = ['name', 'email', 'comment', 'created_at', 'parent', 'status']
-    list_filter = ('status',)
-    form = CommentForm
 
 
 class BlogForm(forms.ModelForm):
@@ -75,5 +40,3 @@ class BlogAdmin(admin.ModelAdmin):
 
 
 admin.site.register(News, BlogAdmin)
-admin.site.register(Category, CategoriesAdmin)
-admin.site.register(Comment, CommentAdmin)

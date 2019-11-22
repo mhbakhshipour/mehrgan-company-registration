@@ -17,7 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from blog.urls import urlpatterns as blog_urls
 from core.urls import urlpatterns as core_urls
+from consultant.urls import urlpatterns as consultant_urls
 
 default_urls = [path('api/browse/', include('rest_framework.urls')), path('admin/', admin.site.urls)]
-imported_urls = [*blog_urls, *core_urls, ]
+imported_urls = [*blog_urls, *core_urls, *consultant_urls, ]
 urlpatterns = [*default_urls] + imported_urls
