@@ -171,6 +171,31 @@
 				"description": "you should send some parametrs in body:\n\nfull_name:\nemail:\nphone:\ndescription:"
 			},
 			"response": []
+		},
+		{
+			"name": "get faqs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/get-faq",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"get-faq"
+					]
+				},
+				"description": "just request to this api and \"halesho bebar :)\""
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
