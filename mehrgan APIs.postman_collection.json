@@ -60,6 +60,97 @@
 						"description": "replace \"<str:slug>\" with slug news of you want to get"
 					},
 					"response": []
+				},
+				{
+					"name": "get news list by category",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"project\": {\n        \"title\": \"babto\",\n        \"description\": \"babtoooo\"\n    },\n    \"task\": {\n        \"title\": \"babto\",\n        \"description\": \"babtoooo\",\n    \t\"project\": \"babato\"\n\n    }\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/get-news-list-by-category/<int:id>",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"get-news-list-by-category",
+								"<int:id>"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "replace <int:id> with category id you want"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "consultant",
+			"item": [
+				{
+					"name": "get consultant list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						},
+						"description": "replace \"<int:count>\" with number of you want to get consultant"
+					},
+					"response": []
+				},
+				{
+					"name": "get consultant detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/get-consultant-detail/amato",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"get-consultant-detail",
+								"amato"
+							]
+						},
+						"description": "replace \"<str:full_name>\" with full name consultant of you want to get"
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -194,6 +285,30 @@
 					]
 				},
 				"description": "just request to this api and \"halesho bebar :)\""
+			},
+			"response": []
+		},
+		{
+			"name": "get categories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/get-categories",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"get-categories"
+					]
+				}
 			},
 			"response": []
 		}
