@@ -13,8 +13,7 @@ class GetNewsListViewSet(ExpressiveListModelMixin, generics.ListAPIView):
     plural_name = 'news'
 
     def get_queryset(self):
-        count = self.kwargs['count']
-        queryset = News.objects.all().order_by('-created_at')[:count]
+        queryset = News.objects.all().order_by('-created_at')
         return queryset
 
 

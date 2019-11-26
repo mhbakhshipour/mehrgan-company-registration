@@ -15,7 +15,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/v1/get-news-list/<int:count>",
+							"raw": "http://127.0.0.1:8000/api/v1/get-news-list",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -27,11 +27,9 @@
 							"path": [
 								"api",
 								"v1",
-								"get-news-list",
-								"<int:count>"
+								"get-news-list"
 							]
-						},
-						"description": "replace \"<int:count>\" with number of you want to get news"
+						}
 					},
 					"response": []
 				},
@@ -120,9 +118,21 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
-						},
-						"description": "replace \"<int:count>\" with number of you want to get consultant"
+							"raw": "http://127.0.0.1:8000/api/v1/get-consultant-list",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"get-consultant-list"
+							]
+						}
 					},
 					"response": []
 				},
