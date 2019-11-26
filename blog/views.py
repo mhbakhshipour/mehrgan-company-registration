@@ -2,6 +2,7 @@ from django.contrib.contenttypes.models import ContentType
 from jalali_date import datetime2jalali
 from rest_framework import generics
 
+from core.models import CategorizedItems, Category
 from mehrgan.custom_view_mixins import ExpressiveListModelMixin, ExpressiveCreateCommentModelMixin
 from .models import News
 from blog.serializer import GetNewsListSerializer, GetNewsDetailSerializer, CreateCommentSerializer
@@ -14,6 +15,16 @@ class GetNewsListViewSet(ExpressiveListModelMixin, generics.ListAPIView):
     def get_queryset(self):
         count = self.kwargs['count']
         queryset = News.objects.all().order_by('-created_at')[:count]
+        return queryset
+
+
+class GetNewsListByCategoryViewSet(ExpressiveListModelMixin, generics.ListAPIView):
+    serializer_class = GetNewsListSerializer
+    plural_name = 'news_by_category'
+
+    def get_queryset(self):
+        cat_id = self.kwargs['id']
+        queryset = News.objects.get_news_with_by_category(cat_id).order_by('-created_at')
         return queryset
 
 
