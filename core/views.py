@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from rest_framework import generics
 
-from core.models import Faq
+from core.serializer import GetCategoriesSerializer
+from core.models import Faq, Category
 from core.serializer import CreateContactUsSerializer, GetFaqSerializer
 from mehrgan.custom_view_mixins import ExpressiveCreateContactUsViewSetModelMixin, ExpressiveListModelMixin
 
@@ -17,4 +18,13 @@ class GetFaqViewSet(ExpressiveListModelMixin, generics.ListAPIView):
 
     def get_queryset(self):
         queryset = Faq.objects.all().order_by('-created_at')
+        return queryset
+
+
+class GetCategoriesViewSet(ExpressiveListModelMixin, generics.ListAPIView):
+    serializer_class = GetCategoriesSerializer
+    plural_name = 'categories'
+
+    def get_queryset(self):
+        queryset = Category.objects.get_all_categories()
         return queryset

@@ -24,8 +24,8 @@ class CategoryManager(Manager):
     def get_child_category_by_root(self, root_category_id):
         return self.filter(parent_id=root_category_id)
 
-    def get_root_categories(self):
-        return self.filter(parent_id__isnull=True)
+    def get_all_categories(self):
+        return self.all()
 
     def get_root_or_children_ids(self, sub_category_id, root_category_id):
         category_ids = []
@@ -37,7 +37,7 @@ class CategoryManager(Manager):
 
 
 class Category(models.Model):
-    title = models.CharField(_('title'), max_length=255)
+    title = models.CharField(_('title'), max_length=255, unique=True)
     description = models.TextField(_('description'), null=True, blank=True)
     thumbnail = models.ImageField(_('thumbnail'), upload_to=settings.UPLOAD_DIRECTORIES['category_thumbnail'],
                                   blank=True, null=True)
