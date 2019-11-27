@@ -1,18 +1,17 @@
 from django.db import transaction
 from rest_framework import serializers
-from core import models
-from core.models import Category
+from core.models import Category, ContactUs, Faq
 
 
 class CreateContactUsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.ContactUs
+        model = ContactUs
         fields = ['id', 'full_name', 'email', 'phone', 'description', 'c_created_at', 'status']
 
 
 class GetFaqSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.Faq
+        model = Faq
         fields = ['id', 'title', 'description', 'c_created_at']
 
 

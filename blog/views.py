@@ -1,8 +1,6 @@
-from django.contrib.contenttypes.models import ContentType
 from jalali_date import datetime2jalali
-from rest_framework import generics
+from rest_framework import generics, filters
 
-from core.models import CategorizedItems, Category
 from mehrgan.custom_view_mixins import ExpressiveListModelMixin, ExpressiveCreateCommentModelMixin
 from .models import News
 from blog.serializer import GetNewsListSerializer, GetNewsDetailSerializer, CreateCommentSerializer
@@ -11,6 +9,8 @@ from blog.serializer import GetNewsListSerializer, GetNewsDetailSerializer, Crea
 class GetNewsListViewSet(ExpressiveListModelMixin, generics.ListAPIView):
     serializer_class = GetNewsListSerializer
     plural_name = 'news'
+    search_fields = ['title']
+    filter_backends = (filters.SearchFilter,)
 
     def get_queryset(self):
         queryset = News.objects.all().order_by('-created_at')
