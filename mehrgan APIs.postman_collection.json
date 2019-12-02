@@ -166,6 +166,68 @@
 			"protocolProfileBehavior": {}
 		},
 		{
+			"name": "faq",
+			"item": [
+				{
+					"name": "get faqs (search)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/get-faq?search=<query>",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"get-faq"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "<query>"
+								}
+							]
+						},
+						"description": "replace <query> with content you want to search"
+					},
+					"response": []
+				},
+				{
+					"name": "get faqs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/get-faq",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"get-faq"
+							]
+						},
+						"description": "just request to this api and \"halesho bebar :)\""
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "create comment",
 			"request": {
 				"method": "POST",
@@ -270,31 +332,6 @@
 					]
 				},
 				"description": "you should send some parametrs in body:\n\nfull_name:\nemail:\nphone:\ndescription:"
-			},
-			"response": []
-		},
-		{
-			"name": "get faqs",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://127.0.0.1:8000/api/v1/get-faq",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"v1",
-						"get-faq"
-					]
-				},
-				"description": "just request to this api and \"halesho bebar :)\""
 			},
 			"response": []
 		},
