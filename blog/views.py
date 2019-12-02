@@ -9,8 +9,6 @@ from blog.serializer import GetNewsListSerializer, GetNewsDetailSerializer, Crea
 class GetNewsListViewSet(ExpressiveListModelMixin, generics.ListAPIView):
     serializer_class = GetNewsListSerializer
     plural_name = 'news'
-    search_fields = ['title']
-    filter_backends = (filters.SearchFilter,)
 
     def get_queryset(self):
         queryset = News.objects.all().order_by('-created_at')
