@@ -15,7 +15,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/v1/get-news-list",
+							"raw": "http://127.0.0.1:8001/api/v1/news-list",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -23,11 +23,11 @@
 								"0",
 								"1"
 							],
-							"port": "8000",
+							"port": "8001",
 							"path": [
 								"api",
 								"v1",
-								"get-news-list"
+								"news-list"
 							]
 						}
 					},
@@ -356,6 +356,36 @@
 					]
 				},
 				"description": "you should send some parametrs in body:\n\nfull_name:\nemail:\nphone:\ndescription:"
+			},
+			"response": []
+		},
+		{
+			"name": "search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8001/api/v1/search?query=",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"v1",
+						"search"
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": ""
+						}
+					]
+				}
 			},
 			"response": []
 		}
