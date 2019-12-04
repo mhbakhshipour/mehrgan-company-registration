@@ -39,7 +39,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/v1/get-news-detail/<str:slug>",
+							"raw": "http://127.0.0.1:8000/api/v1/news-detail/<str:slug>",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -51,7 +51,7 @@
 							"path": [
 								"api",
 								"v1",
-								"get-news-detail",
+								"news-detail",
 								"<str:slug>"
 							]
 						},
@@ -79,7 +79,7 @@
 							"raw": "{\n    \"project\": {\n        \"title\": \"babto\",\n        \"description\": \"babtoooo\"\n    },\n    \"task\": {\n        \"title\": \"babto\",\n        \"description\": \"babtoooo\",\n    \t\"project\": \"babato\"\n\n    }\n}"
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/v1/get-news-list-by-category/<int:id>",
+							"raw": "http://127.0.0.1:8000/api/v1/news-list-by-category/<int:id>",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -91,7 +91,7 @@
 							"path": [
 								"api",
 								"v1",
-								"get-news-list-by-category",
+								"news-list-by-category",
 								"<int:id>"
 							],
 							"query": [
@@ -103,6 +103,64 @@
 							]
 						},
 						"description": "replace <int:id> with category id you want"
+					},
+					"response": []
+				},
+				{
+					"name": "create comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "comment",
+									"value": "babato",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "jkbdfksjb@jhsbdsa.com",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "amat",
+									"type": "text"
+								},
+								{
+									"key": "parent",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "127.0.0.1:8000/api/v1/comment/<str:content_type>/<int:id>",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"comment",
+								"<str:content_type>",
+								"<int:id>"
+							]
+						},
+						"description": "replace \"<str:content_type>\" with content type of you want to comment on it (EX: news)\nreplace \"<int:id>\" with id of content type you want to comment on it (EX: 5)\nEX: 127.0.0.1:8000/api/v1/create-comment/news/5\n\nin body of request:\nyou should pas some parametrs...\nEX:\ncomment:comment exmple\nemail:ex@ex.com\nname:name exmple\nparent:2"
 					},
 					"response": []
 				}
@@ -118,7 +176,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/v1/get-consultant-list",
+							"raw": "http://127.0.0.1:8000/api/v1/consultant-list",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -130,7 +188,7 @@
 							"path": [
 								"api",
 								"v1",
-								"get-consultant-list"
+								"consultant-list"
 							]
 						}
 					},
@@ -142,7 +200,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8001/api/v1/get-consultant-detail/<str:full_name>",
+							"raw": "http://127.0.0.1:8001/api/v1/consultant-detail/<str:full_name>",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -154,7 +212,7 @@
 							"path": [
 								"api",
 								"v1",
-								"get-consultant-detail",
+								"consultant-detail",
 								"<str:full_name>"
 							]
 						},
@@ -174,7 +232,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/v1/get-faq?search=<query>",
+							"raw": "http://127.0.0.1:8000/api/v1/faq?search=<query>",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -186,7 +244,7 @@
 							"path": [
 								"api",
 								"v1",
-								"get-faq"
+								"faq"
 							],
 							"query": [
 								{
@@ -205,7 +263,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/v1/get-faq",
+							"raw": "http://127.0.0.1:8000/api/v1/faq",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -217,7 +275,7 @@
 							"path": [
 								"api",
 								"v1",
-								"get-faq"
+								"faq"
 							]
 						},
 						"description": "just request to this api and \"halesho bebar :)\""
@@ -226,64 +284,6 @@
 				}
 			],
 			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "create comment",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "comment",
-							"value": "babato",
-							"type": "text"
-						},
-						{
-							"key": "email",
-							"value": "jkbdfksjb@jhsbdsa.com",
-							"type": "text"
-						},
-						{
-							"key": "name",
-							"value": "amat",
-							"type": "text"
-						},
-						{
-							"key": "parent",
-							"value": "2",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "127.0.0.1:8000/api/v1/create-comment/<str:content_type>/<int:id>",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"v1",
-						"create-comment",
-						"<str:content_type>",
-						"<int:id>"
-					]
-				},
-				"description": "replace \"<str:content_type>\" with content type of you want to comment on it (EX: news)\nreplace \"<int:id>\" with id of content type you want to comment on it (EX: 5)\nEX: 127.0.0.1:8000/api/v1/create-comment/news/5\n\nin body of request:\nyou should pas some parametrs...\nEX:\ncomment:comment exmple\nemail:ex@ex.com\nname:name exmple\nparent:2"
-			},
-			"response": []
 		},
 		{
 			"name": "create contact us",
@@ -316,7 +316,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/v1/create-contact-us-form",
+					"raw": "http://127.0.0.1:8000/api/v1/contact-us-form",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -328,7 +328,7 @@
 					"path": [
 						"api",
 						"v1",
-						"create-contact-us-form"
+						"contact-us-form"
 					]
 				},
 				"description": "you should send some parametrs in body:\n\nfull_name:\nemail:\nphone:\ndescription:"
@@ -341,7 +341,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/v1/get-categories",
+					"raw": "http://127.0.0.1:8000/api/v1/categories",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -353,7 +353,7 @@
 					"path": [
 						"api",
 						"v1",
-						"get-categories"
+						"categories"
 					]
 				}
 			},
