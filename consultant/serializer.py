@@ -45,4 +45,4 @@ class GetConsultantDetailSerializer(serializers.ModelSerializer):
         model = models.Consultant
         fields = ['id', 'full_name', 'father_name', 'phone_number', 'mobile_number', 'email', 'address', 'avatar',
                   'linkedin_link', 'telegram_link', 'about', 'activity', 'skills_attributes', 'experience_attributes',
-                  'education_attributes', 'rate']
+                  'education_attributes', 'cv', 'rate']
