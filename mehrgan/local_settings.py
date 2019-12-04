@@ -37,4 +37,5 @@ UPLOAD_DIRECTORIES = {
     'blog_thumbnail': 'blog_thumbnail',
     'category_thumbnail': 'category_thumbnail',
     'consultant_avatar': 'consultant_avatar',
+    'consultant_cv': 'consultant_cv',
 }

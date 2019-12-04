@@ -76,6 +76,7 @@ class Experience(models.Model):
     title = models.CharField(_('title'), max_length=255)
     start_date = models.DateField(_('start_date'), auto_now=True, blank=False, null=False)
     end_date = models.DateField(_('end_date'), blank=True, null=True)
+    description = models.TextField(_('description'), blank=True, null=True)
     created_at = models.DateTimeField(_('created_at'), auto_now=True)
 
     def __str__(self):
@@ -90,7 +91,6 @@ class Experience(models.Model):
 class ConsultantExperience(models.Model):
     consultant = models.ForeignKey(verbose_name=_('consultant'), to="Consultant", on_delete=models.CASCADE, related_name='experience_attributes')
     experience = models.ForeignKey(verbose_name=_('experience'), to="Experience", on_delete=models.CASCADE)
-    description = models.TextField(_('description'), blank=True, null=True)
 
     @property
     def experience_title(self):
@@ -147,6 +147,8 @@ class Consultant(models.Model):
     skills = models.ManyToManyField(verbose_name=_('skills'), to="Skill", blank=True, through="ConsultantSkill")
     educations = models.ManyToManyField(verbose_name=_('educations'), to="Education", blank=True, through="ConsultantEducation")
     experiences = models.ManyToManyField(verbose_name=_('experiences'), to="Experience", blank=True, through="ConsultantExperience")
+
+    cv = models.FileField(_('cv'), upload_to=settings.UPLOAD_DIRECTORIES['consultant_cv'], null=True, blank=True)
 
     created_at = models.DateTimeField(_('created at'), auto_now=True)
     rating = models.ManyToManyField(verbose_name=_('rate'), to="Rate", related_name='rate_average', blank=True)
