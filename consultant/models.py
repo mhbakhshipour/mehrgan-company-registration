@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Avg, Manager
 from froala_editor.fields import FroalaField
 from django.utils.translation import ugettext as _
 
@@ -109,11 +110,33 @@ class ConsultantExperience(models.Model):
         verbose_name_plural = _('consultant experiences')
 
 
+class RateManager(Manager):
+    def average_rate(self, c_id):
+        s = str(self.filter(consultant_id=c_id).aggregate(Avg('number')))
+        a = '.'.join(filter(lambda i: i.isdigit(), s))
+        result = a[0:3]
+        return result
+
+
+class Rate(models.Model):
+    consultant = models.ForeignKey(verbose_name=_('consultant'), to="Consultant", on_delete=models.CASCADE)
+    rate = models.SmallIntegerField(_('rate'), default=5)
+    created_at = models.DateTimeField(_('created_at'), auto_now=True)
+
+    objects = RateManager()
+
+    class Meta:
+        db_table = 'rates'
+        verbose_name = _('rate')
+        verbose_name_plural = _('rates')
+
+
 class Consultant(models.Model):
     full_name = models.CharField(_('full_name'), max_length=255, unique=True)
     father_name = models.CharField(_('father_name'), max_length=255)
     phone_number = models.CharField(_('phone_number'), max_length=13, null=True)
     mobile_number = models.CharField(_('mobile_number'), max_length=13, null=True)
+    activity = models.CharField(_('activity'), max_length=255, null=True)
     email = models.EmailField(_('email'), max_length=255)
     address = models.TextField(_('address'), max_length=512)
     avatar = models.ImageField(_('avatar'), upload_to=settings.UPLOAD_DIRECTORIES['consultant_avatar'], null=True, blank=True, default='consultant_avatar/sample.jpg')
@@ -126,11 +149,15 @@ class Consultant(models.Model):
     experiences = models.ManyToManyField(verbose_name=_('experiences'), to="Experience", blank=True, through="ConsultantExperience")
 
     created_at = models.DateTimeField(_('created at'), auto_now=True)
-    rate = models.SmallIntegerField(_('rate'), default=5, null=True, blank=True)
+    rating = models.ManyToManyField(verbose_name=_('rate'), to="Rate", related_name='rate_average', blank=True)
 
     @property
     def c_created_at(self):
         return self.created_at.strftime('%Y/%m/%d - %H:%M:%S')
+
+    @property
+    def rate(self):
+        return Rate.objects.average_rate(self.id)
 
     class Meta:
         db_table = 'consultant'

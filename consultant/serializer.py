@@ -33,7 +33,7 @@ class GetConsultantListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Consultant
-        fields = ['id', 'full_name', 'about', 'avatar', 'skills']
+        fields = ['id', 'full_name', 'about', 'avatar', 'skills', 'phone_number', 'activity']
 
 
 class GetConsultantDetailSerializer(serializers.ModelSerializer):
@@ -44,5 +44,5 @@ class GetConsultantDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Consultant
         fields = ['id', 'full_name', 'father_name', 'phone_number', 'mobile_number', 'email', 'address', 'avatar',
-                  'linkedin_link', 'telegram_link', 'about', 'skills_attributes', 'experience_attributes',
+                  'linkedin_link', 'telegram_link', 'about', 'activity', 'skills_attributes', 'experience_attributes',
                   'education_attributes', 'rate']
