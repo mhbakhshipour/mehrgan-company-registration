@@ -1,36 +1,48 @@
 from rest_framework import serializers
 
-from core.models import CategorizedItems
 from consultant import models
-from consultant.models import SkilledConsultant
+from consultant.models import ConsultantSkill, Skill, ConsultantExperience, ConsultantEducation
 
 
-class CategoriesSerializer(serializers.ModelSerializer):
+class ConsultantExperienceSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CategorizedItems
-        fields = ['category_id', 'category_title', 'category_slug', 'category_parent']
+        model = ConsultantExperience
+        fields = ['id', 'description', 'experience_title', 'experience_start_date', 'experience_start_date']
+
+
+class ConsultantEducationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ConsultantEducation
+        fields = ['id', 'description', 'education_title', 'education_university', 'education_end_date']
 
 
 class SkillsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = SkilledConsultant
-        fields = ['skill_id', 'skill_title']
+        model = Skill
+        fields = ['id', 'title']
+
+
+class ConsultantSkillSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ConsultantSkill
+        fields = ['id', 'description', 'skill_title']
 
 
 class GetConsultantListSerializer(serializers.ModelSerializer):
-    categories = CategoriesSerializer(many=True)
-
-    class Meta:
-        model = models.Consultant
-        fields = ['id', 'full_name', 'description', 'categories', 'avatar']
-
-
-class GetConsultantDetailSerializer(serializers.ModelSerializer):
-    categories = CategoriesSerializer(many=True)
     skills = SkillsSerializer(many=True)
 
     class Meta:
         model = models.Consultant
-        fields = ['id', 'full_name', 'father_name', 'phone', 'email', 'address', 'education_degree', 'description',
-                  'about', 'categories', 'skills', 'c_created_at', 'avatar', 'linkedin_link', 'telegram_link',
-                  'instagram_link', 'twitter_link', 'facebook_link', 'rate']
+        fields = ['id', 'full_name', 'about', 'avatar', 'skills']
+
+
+class GetConsultantDetailSerializer(serializers.ModelSerializer):
+    skills_attributes = ConsultantSkillSerializer(many=True)
+    experience_attributes = ConsultantExperienceSerializer(many=True)
+    education_attributes = ConsultantEducationSerializer(many=True)
+
+    class Meta:
+        model = models.Consultant
+        fields = ['id', 'full_name', 'father_name', 'phone_number', 'mobile_number', 'email', 'address', 'avatar',
+                  'linkedin_link', 'telegram_link', 'about', 'skills_attributes', 'experience_attributes',
+                  'education_attributes', 'rate']
