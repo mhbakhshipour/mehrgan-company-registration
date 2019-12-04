@@ -1,9 +1,10 @@
 from django.urls import path
 
-from core.views import CreateContactUsViewSet, GetFaqViewSet, GetCategoriesViewSet
+from core.views import SearchViewSet, CategoriesViewSet, FaqViewSet, ContactUsViewSet
 
 urlpatterns = [
-    path('api/v1/create-contact-us-form', CreateContactUsViewSet.as_view(), name='create_contact_us_form'),
-    path('api/v1/get-faq', GetFaqViewSet.as_view(), name='get_faq'),
-    path('api/v1/get-categories', GetCategoriesViewSet.as_view(), name='get_categories'),
+    path('api/v1/contact-us-form', ContactUsViewSet.as_view(), name='contact_us_form'),
+    path('api/v1/faq', FaqViewSet.as_view(), name='faq'),
+    path('api/v1/categories-list', CategoriesViewSet.as_view(), name='categories-list'),
+    path('api/v1/search', SearchViewSet.as_view(), name='search'),
 ]
