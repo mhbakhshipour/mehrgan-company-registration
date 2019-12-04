@@ -20,13 +20,13 @@ class CommentsSerializer(serializers.ModelSerializer):
                   'comment_parent', 'comment_status']
 
 
-class GetNewsListSerializer(serializers.ModelSerializer):
+class NewsListSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
         fields = ['id', 'title', 'description', 'thumbnail', 'slug']
 
 
-class GetNewsDetailSerializer(serializers.ModelSerializer):
+class NewsDetailSerializer(serializers.ModelSerializer):
     categories = CategoriesSerializer(many=True)
     comments = CommentsSerializer(many=True)
 
@@ -36,13 +36,13 @@ class GetNewsDetailSerializer(serializers.ModelSerializer):
                   'comments']
 
 
-class CreateCommentedItemsSerializer(serializers.ModelSerializer):
+class CommentedItemsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ['comment', 'content_type', 'object_id']
 
 
-class CreateCommentSerializer(serializers.ModelSerializer):
+class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ['id', 'comment', 'email', 'name', 'parent']

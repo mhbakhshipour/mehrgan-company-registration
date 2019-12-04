@@ -28,7 +28,7 @@ class ConsultantSkillSerializer(serializers.ModelSerializer):
         fields = ['id', 'description', 'skill_title']
 
 
-class GetConsultantListSerializer(serializers.ModelSerializer):
+class ConsultantListSerializer(serializers.ModelSerializer):
     skills = SkillsSerializer(many=True)
 
     class Meta:
@@ -36,7 +36,7 @@ class GetConsultantListSerializer(serializers.ModelSerializer):
         fields = ['id', 'full_name', 'about', 'avatar', 'skills', 'phone_number', 'activity']
 
 
-class GetConsultantDetailSerializer(serializers.ModelSerializer):
+class ConsultantDetailSerializer(serializers.ModelSerializer):
     skills_attributes = ConsultantSkillSerializer(many=True)
     experience_attributes = ConsultantExperienceSerializer(many=True)
     education_attributes = ConsultantEducationSerializer(many=True)

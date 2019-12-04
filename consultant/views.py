@@ -2,21 +2,21 @@ from django.shortcuts import render
 from rest_framework import generics
 
 from consultant.models import Consultant
-from consultant.serializer import GetConsultantListSerializer, GetConsultantDetailSerializer
+from consultant.serializer import ConsultantListSerializer, ConsultantDetailSerializer
 from mehrgan.custom_view_mixins import ExpressiveListModelMixin
 
 
-class GetConsultantListViewSet(ExpressiveListModelMixin, generics.ListAPIView):
-    serializer_class = GetConsultantListSerializer
-    plural_name = 'consultants'
+class ConsultantListViewSet(ExpressiveListModelMixin, generics.ListAPIView):
+    serializer_class = ConsultantListSerializer
+    plural_name = 'consultants_list'
 
     def get_queryset(self):
         queryset = Consultant.objects.all().order_by('-full_name')
         return queryset
 
 
-class GetConsultantDetailViewSet(ExpressiveListModelMixin, generics.ListAPIView):
-    serializer_class = GetConsultantDetailSerializer
+class ConsultantDetailViewSet(ExpressiveListModelMixin, generics.ListAPIView):
+    serializer_class = ConsultantDetailSerializer
     plural_name = 'consultant'
 
     def get_queryset(self):
