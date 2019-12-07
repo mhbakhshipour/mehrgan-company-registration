@@ -52,7 +52,6 @@ class SearchViewSet(ExpressiveListModelMixin, generics.ListAPIView):
         consultant = {'consultant': list(
             Consultant.objects.filter(n_a_a_lookup).distinct().values('id', 'full_name', 'about', 'avatar',
                                                                       'phone_number', 'activity'))}
-        faqs = {'faqs': list(Faq.objects.filter(t_d_lookup).distinct().values('id', 'title', 'description'))}
-
-        queryset = [news, categories, consultant, faqs]
+        
+        queryset = [news, categories, consultant]
         return queryset
