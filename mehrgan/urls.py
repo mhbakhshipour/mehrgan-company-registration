@@ -23,6 +23,6 @@ from mehrgan import settings
 
 default_urls = [path('api/browse/', include('rest_framework.urls')), path('admin/', admin.site.urls)]
 imported_urls = [*blog_urls, *core_urls, *consultant_urls, ]
-urlpatterns = [*default_urls] + imported_urls \
-              + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
-              + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns = [*default_urls] + imported_urls + static(settings.STATIC_URL,
+                                                       document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL,
+                                                                                                    document_root=settings.MEDIA_ROOT)
