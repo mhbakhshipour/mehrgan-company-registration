@@ -14,11 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf.urls.static import static
 from django.urls import path, include
 from blog.urls import urlpatterns as blog_urls
 from core.urls import urlpatterns as core_urls
 from consultant.urls import urlpatterns as consultant_urls
+from mehrgan import settings
 
 default_urls = [path('api/browse/', include('rest_framework.urls')), path('admin/', admin.site.urls)]
 imported_urls = [*blog_urls, *core_urls, *consultant_urls, ]
-urlpatterns = [*default_urls] + imported_urls
+urlpatterns = [*default_urls] + imported_urls \
+              + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
+              + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
