@@ -247,3 +247,69 @@ msgstr "نام خانوادگی"
 
 msgid "time"
 msgstr "زمان"
+
+msgid "company_register_form"
+msgstr "فرم ثبت شرکت"
+
+msgid "company_register_forms"
+msgstr "فرم های ثبت شرکت"
+
+msgid "company_edit_form"
+msgstr "فرم تغییر شرکت"
+
+msgid "company_edit_forms"
+msgstr "فرم های تغییر شرکت"
+
+msgid "company_register_trademarks_form"
+msgstr "فرم ثبت علایم تجاری"
+
+msgid "company_register_trademarks_forms"
+msgstr "فرم های ثبت علایم تجاری"
+
+msgid "official_services_form"
+msgstr "فرم خدمات اداری"
+
+msgid "official_services_forms"
+msgstr "فرم های خدمات اداری"
+
+msgid "request_lawyer_form"
+msgstr "فرم درخواست وکیل"
+
+msgid "request_lawyer_forms"
+msgstr "فرم های درخواست وکیل"
+
+msgid "legal_advice_form"
+msgstr "فرم مشاوره حقوقی"
+
+msgid "legal_advice_forms"
+msgstr "فرم های مشاوره حقوقی"
+
+msgid "company_type"
+msgstr "نوع شرکت"
+
+msgid "region"
+msgstr "شهر"
+
+msgid "fund"
+msgstr "سرمایه"
+
+msgid "is_tracked"
+msgstr "آیا پیگیری شده است؟"
+
+msgid "company_type_change"
+msgstr "تغییر نوع شرکت به"
+
+msgid "trademark_type"
+msgstr "نوع علامت تجاری"
+
+msgid "is_extended"
+msgstr "آیا تمدید می خواهد؟"
+
+msgid "service_type"
+msgstr "نوع سرویس"
+
+msgid "request_type"
+msgstr "نوع درخواست"
+
+msgid "advice_type"
+msgstr "نوع مشاوره"

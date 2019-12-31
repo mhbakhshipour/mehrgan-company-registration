@@ -97,7 +97,8 @@ class Comment(models.Model):
     comment = models.TextField(_('comment'), null=False, blank=False, max_length=500)
     email = models.EmailField(_('email'), null=False, blank=False, max_length=255)
     phone = models.CharField(_('phone'), null=False, blank=False, max_length=13)
-    name = models.CharField(_('name'), null=False, blank=False, max_length=255)
+    first_name = models.CharField(_('first_name'), null=False, blank=False, max_length=255)
+    last_name = models.CharField(_('last_name'), null=False, blank=False, max_length=255)
     created_at = models.DateTimeField(_('created at'), auto_now_add=True)
     parent = models.ForeignKey(to='self', blank=True, null=True, on_delete=models.CASCADE, related_name='children',
                                verbose_name=_('parent'))
@@ -203,3 +204,105 @@ class Faq(models.Model):
         db_table = 'faq'
         verbose_name = _('faq')
         verbose_name_plural = _('faq')
+
+
+class CompanyRegisterForm(models.Model):
+    company_type = models.CharField(_('company_type'), null=False, blank=False, max_length=255)
+    activity = models.CharField(_('activity'), null=False, blank=False, max_length=255)
+    name = models.CharField(_('name'), null=False, blank=False, max_length=255)
+    phone = models.CharField(_('phone'), null=False, blank=False, max_length=13)
+    region = models.CharField(_('region'), null=False, blank=False, max_length=255)
+    fund = models.CharField(_('fund'), null=False, blank=False, max_length=255)
+    created_at = models.DateTimeField(_('created_at'), auto_now_add=True)
+    is_tracked = models.BooleanField(_('is_tracked'), default=False)
+
+    def __str__(self):
+        return self.company_type
+
+    class Meta:
+        db_table = 'company_register_forms'
+        verbose_name = _('company_register_form')
+        verbose_name_plural = _('company_register_forms')
+
+
+class CompanyEditForm(models.Model):
+    company_type = models.CharField(_('company_type'), null=False, blank=False, max_length=255)
+    company_type_change = models.CharField(_('company_type_change'), null=False, blank=False, max_length=255)
+    name = models.CharField(_('name'), null=False, blank=False, max_length=255)
+    phone = models.CharField(_('phone'), null=False, blank=False, max_length=13)
+    region = models.CharField(_('region'), null=False, blank=False, max_length=255)
+    created_at = models.DateTimeField(_('created_at'), auto_now_add=True)
+    is_tracked = models.BooleanField(_('is_tracked'), default=False)
+
+    def __str__(self):
+        return self.company_type
+
+    class Meta:
+        db_table = 'company_edit_forms'
+        verbose_name = _('company_edit_form')
+        verbose_name_plural = _('company_edit_forms')
+
+
+class CompanyRegisterTrademarksForm(models.Model):
+    trademark_type = models.CharField(_('trademark_type'), null=False, blank=False, max_length=255)
+    name = models.CharField(_('name'), null=False, blank=False, max_length=255)
+    phone = models.CharField(_('phone'), null=False, blank=False, max_length=13)
+    is_extended = models.BooleanField(_('is_extended'), default=True)
+    created_at = models.DateTimeField(_('created_at'), auto_now_add=True)
+    is_tracked = models.BooleanField(_('is_tracked'), default=False)
+
+    def __str__(self):
+        return self.trademark_type
+
+    class Meta:
+        db_table = 'company_register_trademarks_forms'
+        verbose_name = _('company_register_trademarks_form')
+        verbose_name_plural = _('company_register_trademarks_forms')
+
+
+class OfficialServicesForm(models.Model):
+    service_type = models.CharField(_('service_type'), null=False, blank=False, max_length=255)
+    name = models.CharField(_('name'), null=False, blank=False, max_length=255)
+    phone = models.CharField(_('phone'), null=False, blank=False, max_length=13)
+    created_at = models.DateTimeField(_('created_at'), auto_now_add=True)
+    is_tracked = models.BooleanField(_('is_tracked'), default=False)
+
+    def __str__(self):
+        return self.service_type
+
+    class Meta:
+        db_table = 'official_services_forms'
+        verbose_name = _('official_services_form')
+        verbose_name_plural = _('official_services_forms')
+
+
+class RequestLawyerForm(models.Model):
+    request_type = models.CharField(_('request_type'), null=False, blank=False, max_length=255)
+    name = models.CharField(_('name'), null=False, blank=False, max_length=255)
+    phone = models.CharField(_('phone'), null=False, blank=False, max_length=13)
+    created_at = models.DateTimeField(_('created_at'), auto_now_add=True)
+    is_tracked = models.BooleanField(_('is_tracked'), default=False)
+
+    def __str__(self):
+        return self.request_type
+
+    class Meta:
+        db_table = 'request_lawyer_forms'
+        verbose_name = _('request_lawyer_form')
+        verbose_name_plural = _('request_lawyer_forms')
+
+
+class LegalAdviceForm(models.Model):
+    advice_type = models.CharField(_('advice_type'), null=False, blank=False, max_length=255)
+    name = models.CharField(_('name'), null=False, blank=False, max_length=255)
+    phone = models.CharField(_('phone'), null=False, blank=False, max_length=13)
+    created_at = models.DateTimeField(_('created_at'), auto_now_add=True)
+    is_tracked = models.BooleanField(_('is_tracked'), default=False)
+
+    def __str__(self):
+        return self.advice_type
+
+    class Meta:
+        db_table = 'legal_advice_forms'
+        verbose_name = _('legal_advice_form')
+        verbose_name_plural = _('legal_advice_forms')

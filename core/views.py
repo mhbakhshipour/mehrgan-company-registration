@@ -4,9 +4,10 @@ from rest_framework import generics, filters
 
 from blog.models import News
 from consultant.models import Consultant
-from core.serializer import SearchSerializer, ContactUsSerializer, FaqSerializer, CategoriesSerializer
+from core.serializer import *
 from core.models import Faq, Category
-from mehrgan.custom_view_mixins import ExpressiveCreateContactUsViewSetModelMixin, ExpressiveListModelMixin
+from mehrgan.custom_view_mixins import ExpressiveCreateContactUsViewSetModelMixin, ExpressiveListModelMixin, \
+    ExpressiveCreateCommentModelMixin
 
 
 class ContactUsViewSet(ExpressiveCreateContactUsViewSetModelMixin, generics.CreateAPIView):
@@ -55,3 +56,33 @@ class SearchViewSet(ExpressiveListModelMixin, generics.ListAPIView):
         
         queryset = [news, categories, consultant]
         return queryset
+
+
+class CompanyRegisterFormViewSet(ExpressiveCreateContactUsViewSetModelMixin, generics.CreateAPIView):
+    serializer_class = CompanyRegisterFormSerializer
+    singular_name = 'form_created'
+
+
+class CompanyEditFormViewSet(ExpressiveCreateContactUsViewSetModelMixin, generics.CreateAPIView):
+    serializer_class = CompanyEditFormSerializer
+    singular_name = 'form_created'
+
+
+class CompanyRegisterTrademarksFormViewSet(ExpressiveCreateContactUsViewSetModelMixin, generics.CreateAPIView):
+    serializer_class = CompanyRegisterTrademarksFormSerializer
+    singular_name = 'form_created'
+
+
+class OfficialServicesFormViewSet(ExpressiveCreateContactUsViewSetModelMixin, generics.CreateAPIView):
+    serializer_class = OfficialServicesFormSerializer
+    singular_name = 'form_created'
+
+
+class RequestLawyerFormViewSet(ExpressiveCreateContactUsViewSetModelMixin, generics.CreateAPIView):
+    serializer_class = RequestLawyerFormSerializer
+    singular_name = 'form_created'
+
+
+class LegalAdviceFormViewSet(ExpressiveCreateContactUsViewSetModelMixin, generics.CreateAPIView):
+    serializer_class = LegalAdviceFormSerializer
+    singular_name = 'form_created'

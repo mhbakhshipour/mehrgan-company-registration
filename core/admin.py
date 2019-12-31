@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib import admin
 
-from core.models import ContactUs, Faq, Category, Comment, CategorizedItems, CommentedItems
+from core.models import *
 
 
 class CategoriesForm(forms.ModelForm):
@@ -24,9 +24,10 @@ class CategoriesAdmin(admin.ModelAdmin):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ['name', 'email', 'comment', 'parent', 'status']
+        fields = ['first_name', 'last_name', 'email', 'comment', 'parent', 'status']
         labels = {
-            'name': 'نام',
+            'first_name': 'نام',
+            'last_name': 'نام خانوادگی',
             'email': 'ایمیل',
             'comment': 'نظر',
             'parent': 'کامنت اصلی',
@@ -35,7 +36,7 @@ class CommentForm(forms.ModelForm):
 
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ['name', 'email', 'comment', 'created_at', 'parent', 'status']
+    list_display = ['last_name', 'email', 'comment', 'created_at', 'parent', 'status']
     list_filter = ('status',)
     form = CommentForm
 
@@ -79,9 +80,45 @@ class FaqAdmin(admin.ModelAdmin):
         return super().save_related(request, form, formsets, change)
 
 
+class CompanyEditFormAdmin(admin.ModelAdmin):
+    list_display = ('company_type', 'company_type_change', 'region', 'name', 'phone', 'created_at', 'is_tracked')
+    list_filter = ('is_tracked',)
+
+
+class CompanyRegisterFormAdmin(admin.ModelAdmin):
+    list_display = ('company_type', 'activity', 'region', 'fund', 'name', 'phone', 'created_at', 'is_tracked')
+    list_filter = ('is_tracked',)
+
+
+class CompanyRegisterTrademarksFormAdmin(admin.ModelAdmin):
+    list_display = ('trademark_type', 'name', 'phone', 'is_extended', 'created_at', 'is_tracked')
+    list_filter = ('is_tracked',)
+
+
+class LegalAdviceFormAdmin(admin.ModelAdmin):
+    list_display = ('advice_type', 'name', 'phone', 'created_at', 'is_tracked')
+    list_filter = ('is_tracked',)
+
+
+class OfficialServicesFormAdmin(admin.ModelAdmin):
+    list_display = ('service_type', 'name', 'phone', 'created_at', 'is_tracked')
+    list_filter = ('is_tracked',)
+
+
+class RequestLawyerFormAdmin(admin.ModelAdmin):
+    list_display = ('request_type', 'name', 'phone', 'created_at', 'is_tracked')
+    list_filter = ('is_tracked',)
+
+
 admin.site.register(ContactUs, ContactUsAdmin)
 admin.site.register(Category, CategoriesAdmin)
 admin.site.register(CategorizedItems)
 admin.site.register(Comment, CommentAdmin)
 admin.site.register(CommentedItems)
 admin.site.register(Faq, FaqAdmin)
+admin.site.register(CompanyEditForm, CompanyEditFormAdmin)
+admin.site.register(CompanyRegisterForm, CompanyRegisterFormAdmin)
+admin.site.register(CompanyRegisterTrademarksForm, CompanyRegisterTrademarksFormAdmin)
+admin.site.register(LegalAdviceForm, LegalAdviceFormAdmin)
+admin.site.register(OfficialServicesForm, OfficialServicesFormAdmin)
+admin.site.register(RequestLawyerForm, RequestLawyerFormAdmin)

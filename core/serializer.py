@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from core.models import Category, ContactUs, Faq
+from core.models import *
 
 
 class ContactUsSerializer(serializers.ModelSerializer):
@@ -31,3 +31,39 @@ class SearchSerializer(serializers.Serializer):
 
     def update(self, instance, validated_data):
         pass
+
+
+class CompanyRegisterFormSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CompanyRegisterForm
+        fields = '__all__'
+
+
+class CompanyEditFormSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CompanyEditForm
+        fields = '__all__'
+
+
+class CompanyRegisterTrademarksFormSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CompanyRegisterTrademarksForm
+        fields = '__all__'
+
+
+class OfficialServicesFormSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OfficialServicesForm
+        fields = '__all__'
+
+
+class RequestLawyerFormSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RequestLawyerForm
+        fields = '__all__'
+
+
+class LegalAdviceFormSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LegalAdviceForm
+        fields = '__all__'
