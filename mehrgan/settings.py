@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'blog',
     'core',
     'consultant',
+    'corsheaders',
 ]
 
 REST_FRAMEWORK = {
@@ -56,6 +57,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'mehrgan.custom_middleware.input_sanitizer_middleware',
     'mehrgan.custom_middleware.global_identifier_extractor_middleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'mehrgan.urls'
@@ -140,3 +142,8 @@ USE_TZ = True
 LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'),)
 
 WHITELIST_STRIP_TAG_PARAMETERS = []
+
+# CORS_ORIGIN_WHITELIST = [
+#     "*",
+# ]
+CORS_ORIGIN_ALLOW_ALL = True
