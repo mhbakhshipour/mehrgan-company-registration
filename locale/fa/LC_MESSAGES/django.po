@@ -238,3 +238,12 @@ msgstr "تماس با ما"
 #: core/models.py:195 core/models.py:196
 msgid "faq"
 msgstr "سوالات متداول"
+
+msgid "firs_name"
+msgstr "نام"
+
+msgid "last_name"
+msgstr "نام خانوادگی"
+
+msgid "time"
+msgstr "زمان"

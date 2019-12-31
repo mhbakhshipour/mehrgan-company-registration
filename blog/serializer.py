@@ -16,8 +16,8 @@ class CommentsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CommentedItems
-        fields = ['comment_id', 'comment_title', 'comment_name', 'comment_email', 'comment_created_at',
-                  'comment_parent', 'comment_status']
+        fields = ['comment_id', 'comment_title', 'comment_first_name', 'comment_last_name', 'comment_email',
+                  'comment_phone', 'comment_created_at', 'comment_parent', 'comment_status']
 
 
 class NewsListSerializer(serializers.ModelSerializer):
@@ -32,8 +32,8 @@ class NewsDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = News
-        fields = ['id', 'title', 'description', 'content', 'custom_created_at', 'thumbnail', 'slug', 'categories',
-                  'comments']
+        fields = ['id', 'title', 'description', 'content', 'time', 'custom_created_at', 'thumbnail', 'slug',
+                  'categories', 'comments']
 
 
 class CommentedItemsSerializer(serializers.ModelSerializer):

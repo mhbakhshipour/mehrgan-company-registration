@@ -96,6 +96,7 @@ class Comment(models.Model):
 
     comment = models.TextField(_('comment'), null=False, blank=False, max_length=500)
     email = models.EmailField(_('email'), null=False, blank=False, max_length=255)
+    phone = models.CharField(_('phone'), null=False, blank=False, max_length=13)
     name = models.CharField(_('name'), null=False, blank=False, max_length=255)
     created_at = models.DateTimeField(_('created at'), auto_now_add=True)
     parent = models.ForeignKey(to='self', blank=True, null=True, on_delete=models.CASCADE, related_name='children',
@@ -118,8 +119,12 @@ class CommentedItems(models.Model):
     content_object = GenericForeignKey('content_type', 'object_id')
 
     @property
-    def comment_name(self):
-        return self.comment.name
+    def comment_first_name(self):
+        return self.comment.first_name
+
+    @property
+    def comment_last_name(self):
+        return self.comment.last_name
 
     @property
     def comment_title(self):
@@ -128,6 +133,10 @@ class CommentedItems(models.Model):
     @property
     def comment_email(self):
         return self.comment.email
+
+    @property
+    def comment_phone(self):
+        return self.comment.phone
 
     @property
     def comment_status(self):

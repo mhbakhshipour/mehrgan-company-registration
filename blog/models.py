@@ -18,6 +18,7 @@ class News(models.Model):
     description = models.TextField(_('description'), null=False, blank=False)
     content = FroalaField()
     categories = GenericRelation(CategorizedItems, null=True, blank=True)
+    time = models.CharField(_('time'), null=False, blank=False, max_length=4)
     comments = GenericRelation(CommentedItems, null=True, blank=True)
     created_at = models.DateTimeField(_('created at'), auto_now_add=True)
     thumbnail = models.ImageField(_('thumbnail'), upload_to=settings.UPLOAD_DIRECTORIES['blog_thumbnail'])
