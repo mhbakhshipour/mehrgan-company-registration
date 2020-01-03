@@ -116,7 +116,7 @@ class ConsultantExperience(models.Model):
 
 class RateManager(Manager):
     def average_rate(self, c_id):
-        s = str(self.filter(consultant_id=c_id).aggregate(Avg('number')))
+        s = str(self.filter(consultant_id=c_id).aggregate(Avg('rate')))
         a = '.'.join(filter(lambda i: i.isdigit(), s))
         result = a[0:3]
         return result
