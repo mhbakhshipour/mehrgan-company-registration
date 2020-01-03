@@ -143,7 +143,7 @@ LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'),)
 
 WHITELIST_STRIP_TAG_PARAMETERS = []
 
-# CORS_ORIGIN_WHITELIST = [
-#     "*",
-# ]
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost",
+    "http://127.0.0.1",
+]
