@@ -1,8 +1,8 @@
-from rest_framework import generics
+from rest_framework import generics, status
 
 from mehrgan.custom_view_mixins import ExpressiveListModelMixin, ExpressiveCreateCommentModelMixin
 from .models import News
-from blog.serializer import CommentSerializer, NewsDetailSerializer, NewsListSerializer
+from blog.serializer import *
 
 
 class NewsListViewSet(ExpressiveListModelMixin, generics.ListAPIView):
@@ -34,6 +34,10 @@ class NewsDetailViewSet(ExpressiveListModelMixin, generics.ListAPIView):
         return queryset
 
 
-class CommentViewSet(ExpressiveCreateCommentModelMixin, generics.CreateAPIView):
+class CommentViewSet(generics.CreateAPIView):
     serializer_class = CommentSerializer
     singular_name = 'comment_created'
+
+    def perform_create(self, serializer):
+        content_type = ContentType.objects.get(app_label=self.kwargs.get('content_type'))
+        serializer.save(content_type=content_type.id, object_id=self.kwargs.get('object_id'))

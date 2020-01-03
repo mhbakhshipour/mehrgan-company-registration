@@ -2,7 +2,7 @@ from django.db import transaction
 from rest_framework import serializers
 
 from blog.models import News
-from core.models import CategorizedItems, CommentedItems, Comment
+from core.models import *
 
 
 class CategoriesSerializer(serializers.ModelSerializer):
@@ -38,11 +38,32 @@ class NewsDetailSerializer(serializers.ModelSerializer):
 
 class CommentedItemsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Comment
+        model = CommentedItems
         fields = ['comment', 'content_type', 'object_id']
 
 
-class CommentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Comment
-        fields = ['id', 'comment', 'email', 'name', 'parent']
+class CommentSerializer(serializers.Serializer):
+    comment = serializers.CharField(required=True)
+    email = serializers.EmailField(required=True)
+    phone = serializers.IntegerField(required=True)
+    first_name = serializers.CharField(required=True)
+    last_name = serializers.CharField(required=True)
+    # parent = serializers.IntegerField(required=False)
+
+    def create(self, validated_data):
+        comment = Comment(
+            comment=validated_data['comment'],
+            email=validated_data['email'],
+            phone=validated_data['phone'],
+            first_name=validated_data['first_name'],
+            last_name=validated_data['last_name'],
+            # parent_id=validated_data['parent']
+        )
+        comment.save()
+        commented_item = CommentedItems(comment=comment, content_type_id=validated_data['content_type'],
+                                        object_id=validated_data['object_id'])
+        commented_item.save()
+        return comment
+
+    def to_representation(self, instance):
+        return {'status': 'ok', 'mssg': 'comment created'}
