@@ -29,8 +29,8 @@ class NewsDetailViewSet(ExpressiveListModelMixin, generics.ListAPIView):
     plural_name = 'news'
 
     def get_queryset(self):
-        slug = self.kwargs['slug']
-        queryset = News.objects.filter(slug=slug)
+        id = self.kwargs['id']
+        queryset = News.objects.filter(pk=id)
         return queryset
 
 
