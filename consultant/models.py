@@ -97,6 +97,10 @@ class ConsultantExperience(models.Model):
         return self.experience.title
 
     @property
+    def experience_description(self):
+        return self.experience.description
+
+    @property
     def experience_start_date(self):
         return self.experience.start_date
 

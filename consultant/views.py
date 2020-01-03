@@ -20,6 +20,6 @@ class ConsultantDetailViewSet(ExpressiveListModelMixin, generics.ListAPIView):
     plural_name = 'consultant'
 
     def get_queryset(self):
-        full_name = self.kwargs['full_name']
-        queryset = Consultant.objects.filter(full_name=full_name)
+        id = self.kwargs['id']
+        queryset = Consultant.objects.filter(pk=id)
         return queryset

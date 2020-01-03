@@ -7,7 +7,7 @@ from consultant.models import ConsultantSkill, Skill, ConsultantExperience, Cons
 class ConsultantExperienceSerializer(serializers.ModelSerializer):
     class Meta:
         model = ConsultantExperience
-        fields = ['id', 'description', 'experience_title', 'experience_start_date', 'experience_start_date']
+        fields = ['id', 'experience_description', 'experience_title', 'experience_start_date', 'experience_start_date']
 
 
 class ConsultantEducationSerializer(serializers.ModelSerializer):
