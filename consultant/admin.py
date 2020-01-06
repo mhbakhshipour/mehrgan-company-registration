@@ -1,8 +1,60 @@
 from django.contrib import admin
+from django.contrib.admin import TabularInline
+from django.contrib.contenttypes.admin import *
+from django.utils.translation import ugettext as _
+from django import forms
 
 from consultant.models import *
 
-admin.site.register(Consultant)
+
+class SkillInlineModelAdmin(TabularInline):
+    model = ConsultantSkill
+    extra = 1
+
+
+class EducationInlineModelAdmin(TabularInline):
+    model = ConsultantEducation
+    extra = 1
+
+
+class ExperienceInlineModelAdmin(TabularInline):
+    model = ConsultantExperience
+    extra = 1
+
+
+class ConsultantForm(forms.ModelForm):
+    class Meta:
+        model = Consultant
+        fields = ['full_name', 'father_name', 'phone_number', 'mobile_number', 'activity', 'email', 'address', 'avatar',
+                  'linkedin_link', 'telegram_link', 'about', 'cv', 'rating']
+        labels = {
+            'full_name': _('full_name'),
+            'father_name': _('father_name'),
+            'phone_number': _('phone_number'),
+            'mobile_number': _('mobile_number'),
+            'activity': _('activity'),
+            'email': _('email'),
+            'address': _('address'),
+            'avatar': _('avatar'),
+            'linkedin_link': _('linkedin_link'),
+            'telegram_link': _('telegram_link'),
+            'about': _('about'),
+            'cv': _('cv'),
+            'rating': _('rating'),
+        }
+
+
+class ConsultantAdmin(admin.ModelAdmin):
+    form = ConsultantForm
+    list_display = ('full_name', 'mobile_number', 'activity', 'email', 'created_at')
+    inlines = (SkillInlineModelAdmin, EducationInlineModelAdmin, ExperienceInlineModelAdmin)
+    search_fields = ['full_name']
+
+    def save_related(self, request, form, formsets, change):
+        return super().save_related(request, form, formsets, change)
+
+
+admin.site.register(Consultant, ConsultantAdmin)
 admin.site.register(ConsultantSkill)
 admin.site.register(Skill)
 admin.site.register(Rate)
