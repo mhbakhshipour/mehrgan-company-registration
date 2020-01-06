@@ -129,6 +129,10 @@ class Rate(models.Model):
 
     objects = RateManager()
 
+    def __str__(self):
+        return self.rate
+
+
     class Meta:
         db_table = 'rates'
         verbose_name = _('rate')
