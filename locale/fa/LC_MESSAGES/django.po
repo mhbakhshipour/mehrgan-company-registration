@@ -313,3 +313,9 @@ msgstr "نوع درخواست"
 
 msgid "advice_type"
 msgstr "نوع مشاوره"
+
+msgid "blog"
+msgstr "بلاگ"
+
+msgid "core"
+msgstr "اصلی"
