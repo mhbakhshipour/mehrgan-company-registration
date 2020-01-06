@@ -130,8 +130,7 @@ class Rate(models.Model):
     objects = RateManager()
 
     def __str__(self):
-        return self.rate
-
+        return str(self.rate)
 
     class Meta:
         db_table = 'rates'
