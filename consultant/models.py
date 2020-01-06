@@ -37,7 +37,7 @@ class ConsultantSkill(models.Model):
 class Education(models.Model):
     title = models.CharField(_('title'), max_length=255)
     university = models.CharField(_('university'), max_length=255)
-    end_date = models.IntegerField(_('end_date'))
+    end_date = models.DateField(_('end_date'), blank=False, null=False)
     created_at = models.DateTimeField(_('created_at'), auto_now=True)
 
     def __str__(self):
@@ -74,7 +74,7 @@ class ConsultantEducation(models.Model):
 
 class Experience(models.Model):
     title = models.CharField(_('title'), max_length=255)
-    start_date = models.DateField(_('start_date'), auto_now=True, blank=False, null=False)
+    start_date = models.DateField(_('start_date'), blank=False, null=False)
     end_date = models.DateField(_('end_date'), blank=True, null=True)
     description = models.TextField(_('description'), blank=True, null=True)
     created_at = models.DateTimeField(_('created_at'), auto_now=True)

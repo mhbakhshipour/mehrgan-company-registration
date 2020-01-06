@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.contrib.admin import TabularInline
 from django.utils.translation import ugettext as _
 from django import forms
+from jalali_date.admin import ModelAdminJalaliMixin
 
 from consultant.models import *
 
@@ -55,11 +56,21 @@ class ConsultantAdmin(admin.ModelAdmin):
         return super().save_related(request, form, formsets, change)
 
 
+class ExperienceAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
+    list_display = ('title', 'start_date', 'end_date', 'created_at')
+    search_fields = ['title']
+
+
+class EducationAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
+    list_display = ('title', 'university', 'end_date', 'created_at')
+    search_fields = ['title']
+
+
 admin.site.register(Consultant, ConsultantAdmin)
 admin.site.register(ConsultantSkill)
 admin.site.register(Skill)
 admin.site.register(Rate)
 admin.site.register(ConsultantEducation)
-admin.site.register(Education)
+admin.site.register(Education, EducationAdmin)
 admin.site.register(ConsultantExperience)
-admin.site.register(Experience)
+admin.site.register(Experience, ExperienceAdmin)
