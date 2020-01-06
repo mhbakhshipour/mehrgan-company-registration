@@ -1,6 +1,5 @@
 from django.contrib import admin
 from django.contrib.admin import TabularInline
-from django.contrib.contenttypes.admin import *
 from django.utils.translation import ugettext as _
 from django import forms
 
@@ -26,7 +25,7 @@ class ConsultantForm(forms.ModelForm):
     class Meta:
         model = Consultant
         fields = ['full_name', 'father_name', 'phone_number', 'mobile_number', 'activity', 'email', 'address', 'avatar',
-                  'linkedin_link', 'telegram_link', 'about', 'cv', 'rating']
+                  'linkedin_link', 'telegram_link', 'about', 'cv', 'rating', 'is_enabled']
         labels = {
             'full_name': _('full_name'),
             'father_name': _('father_name'),
@@ -41,14 +40,16 @@ class ConsultantForm(forms.ModelForm):
             'about': _('about'),
             'cv': _('cv'),
             'rating': _('rating'),
+            'is_enabled': _('is_enabled'),
         }
 
 
 class ConsultantAdmin(admin.ModelAdmin):
     form = ConsultantForm
-    list_display = ('full_name', 'mobile_number', 'activity', 'email', 'created_at')
+    list_display = ('full_name', 'mobile_number', 'activity', 'email', 'created_at', 'is_enabled')
     inlines = (SkillInlineModelAdmin, EducationInlineModelAdmin, ExperienceInlineModelAdmin)
     search_fields = ['full_name']
+    list_filter = ('is_enabled',)
 
     def save_related(self, request, form, formsets, change):
         return super().save_related(request, form, formsets, change)

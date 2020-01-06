@@ -11,7 +11,7 @@ class ConsultantListViewSet(ExpressiveListModelMixin, generics.ListAPIView):
     plural_name = 'consultants_list'
 
     def get_queryset(self):
-        queryset = Consultant.objects.all().order_by('-full_name')
+        queryset = Consultant.objects.filter(is_enabled=True).order_by('-full_name')
         return queryset
 
 
@@ -21,5 +21,5 @@ class ConsultantDetailViewSet(ExpressiveListModelMixin, generics.ListAPIView):
 
     def get_queryset(self):
         id = self.kwargs['id']
-        queryset = Consultant.objects.filter(pk=id)
+        queryset = Consultant.objects.filter(pk=id, is_enabled=True)
         return queryset

@@ -319,3 +319,9 @@ msgstr "بلاگ"
 
 msgid "core"
 msgstr "اصلی"
+
+msgid "is_enabled"
+msgstr "آیا فعال است؟"
+
+msgid "rating"
+msgstr "امتیاز"

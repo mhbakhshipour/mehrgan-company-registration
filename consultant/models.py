@@ -155,7 +155,8 @@ class Consultant(models.Model):
     cv = models.FileField(_('cv'), upload_to=settings.UPLOAD_DIRECTORIES['consultant_cv'], null=True, blank=True)
 
     created_at = models.DateTimeField(_('created at'), auto_now=True)
-    rating = models.ManyToManyField(verbose_name=_('rate'), to="Rate", related_name='rate_average', blank=True)
+    rating = models.ManyToManyField(verbose_name=_('rating'), to="Rate", related_name='rate_average', blank=True)
+    is_enabled = models.BooleanField(_('is_enabled'), default=False)
 
     @property
     def c_created_at(self):
