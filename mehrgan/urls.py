@@ -21,6 +21,10 @@ from core.urls import urlpatterns as core_urls
 from consultant.urls import urlpatterns as consultant_urls
 from mehrgan import settings
 
+admin.site.site_header = "پنل مدیریت مهرگان"
+admin.site.site_title = "پنل مدیریت مهرگان"
+admin.site.index_title = "پنل مدیریت مهرگان"
+
 default_urls = [path('api/browse/', include('rest_framework.urls')), path('admin/', admin.site.urls)]
 imported_urls = [*blog_urls, *core_urls, *consultant_urls, ]
 urlpatterns = [*default_urls] + imported_urls + static(settings.STATIC_URL,
