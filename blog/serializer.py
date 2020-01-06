@@ -23,7 +23,7 @@ class CommentsSerializer(serializers.ModelSerializer):
 class NewsListSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
-        fields = ['id', 'title', 'description', 'thumbnail', 'slug']
+        fields = ['id', 'title', 'description', 'time', 'thumbnail', 'slug']
 
 
 class NewsDetailSerializer(serializers.ModelSerializer):
