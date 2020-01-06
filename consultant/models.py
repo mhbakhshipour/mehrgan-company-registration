@@ -156,7 +156,7 @@ class Consultant(models.Model):
 
     created_at = models.DateTimeField(_('created at'), auto_now=True)
     rating = models.ManyToManyField(verbose_name=_('rating'), to="Rate", related_name='rate_average', blank=True)
-    is_enabled = models.BooleanField(_('is_enabled'), default=False)
+    is_enabled = models.BooleanField(_('is_enabled'), default=True)
 
     @property
     def c_created_at(self):

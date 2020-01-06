@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='consultant',
             name='is_enabled',
-            field=models.BooleanField(default=False, verbose_name='is_enabled'),
+            field=models.BooleanField(default=True, verbose_name='is_enabled'),
         ),
         migrations.AlterField(
             model_name='consultant',
