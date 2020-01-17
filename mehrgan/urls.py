@@ -25,7 +25,7 @@ admin.site.site_header = "پنل مدیریت مهرگان"
 admin.site.site_title = "پنل مدیریت مهرگان"
 admin.site.index_title = "پنل مدیریت مهرگان"
 
-default_urls = [path('api/browse/', include('rest_framework.urls')), path('admin/', admin.site.urls)]
+default_urls = [path('api/browse/', include('rest_framework.urls')), path('u39723KuSDwdi723dSgoJIuSD3245R7P987AS2n/admin/', admin.site.urls)]
 imported_urls = [*blog_urls, *core_urls, *consultant_urls, ]
 urlpatterns = [*default_urls] + imported_urls + static(settings.STATIC_URL,
                                                        document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL,
