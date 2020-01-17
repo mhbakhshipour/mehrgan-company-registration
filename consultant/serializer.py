@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from consultant import models
-from consultant.models import ConsultantSkill, Skill, ConsultantExperience, ConsultantEducation
+from consultant.models import ConsultantSkill, Skill, ConsultantExperience, ConsultantEducation, Rate
 
 
 class ConsultantExperienceSerializer(serializers.ModelSerializer):
@@ -46,3 +46,18 @@ class ConsultantDetailSerializer(serializers.ModelSerializer):
         fields = ['id', 'full_name', 'father_name', 'phone_number', 'mobile_number', 'email', 'address', 'avatar',
                   'linkedin_link', 'telegram_link', 'about', 'activity', 'skills_attributes', 'experience_attributes',
                   'education_attributes', 'cv', 'rate']
+
+
+class ConsultantRateSerializer(serializers.Serializer):
+    rate = serializers.IntegerField(required=True)
+
+    def create(self, validated_data):
+        rate = Rate(
+            rate=validated_data['rate'],
+            consultant=validated_data['consultant']
+        )
+        rate.save()
+        return rate
+
+    def to_representation(self, instance):
+        return {'status': 'ok', 'mssg': 'rate created'}
