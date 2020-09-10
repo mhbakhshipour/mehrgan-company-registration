@@ -1,0 +1,35 @@
+version: '3'
+
+networks:
+  mehrgan:
+    driver: bridge
+
+services:
+  mysql:
+    image: mysql:5.7
+    restart: always
+    ports:
+      - '3308:3306'
+    environment:
+      MYSQL_DATABASE: 'mehrgan'
+      MYSQL_USER: 'mehrgan'
+      MYSQL_PASSWORD: 'rMZew4dBbzHastXP'
+      MYSQL_ROOT_PASSWORD: 'rMZew4dBbzHastXP'
+    volumes:
+      - mysql-data-volume:/var/lib/mysql
+    networks:
+      - mehrgan
+
+  backend:
+    build: .
+    restart: always
+    ports:
+      - '8182:8001'
+    command: bash -c "export environment=docker.env && python manage.py migrate && python manage.py runserver 0.0.0.0:8001"
+    depends_on:
+      - mysql
+    networks:
+      - mehrgan
+
+volumes:
+  mysql-data-volume:
